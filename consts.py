@@ -1,4 +1,4 @@
-email_dict = {
+EMAIL_DICT = {
     "Uvda": "Uvda@gmail.com",
     "Gidonim": "Gidonim@gmail.com",
     "Hatzor": "Hatzor@gmail.com",
@@ -6,7 +6,7 @@ email_dict = {
     "Palmahim": "Palmahim@gmail.com"
 }
 
-base_codes_dict = {
+BASE_CODES_DICT = {
     "Uvda": "11",
     "Gidonim": "22",
     "Hatzor": "33",
@@ -14,7 +14,7 @@ base_codes_dict = {
     "Palmahim": "55"
 }
 
-min_gear_dict = {
+MIN_GEAR_DICT = {
     "Vests": {
         "Uvda": 11,
         "Gidonim": 22,
@@ -51,3 +51,5 @@ min_gear_dict = {
         "Palmahim": 55
     }
 }
+
+MAX_LOGIN_TRIES = 3
