@@ -17,9 +17,9 @@ from tkinter import OptionMenu, StringVar
 #
 
 def add_logo():
-   confetti = tk.PhotoImage(file="confetti.gif")  # loading image
-   confetti_label = tk.Label(soldier_screen_action, confetti)  # creating label element
-   # confetti_label.place(x=150, y=350)  # placement
+   logo = tk.PhotoImage(file="media/logo.png")  # loading image
+   confetti_label = tk.Label(soldier_screen_action, logo)  # creating label element
+   confetti_label.place(x=150, y=350)  # placement
    confetti_label.pack()
 
 
