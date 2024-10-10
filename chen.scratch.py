@@ -1,50 +1,86 @@
 import tkinter as tk
-from tkinter import Frame
+import consts
+from tkinter import OptionMenu, StringVar
 
-def show_welcome_screen(screen):
-    welcome_text = tk.Label(screen, text="Welcome to DonationNation!")
+def create_details_screen(screen):
+    frame = tk.Frame(screen)
+    frame.grid(row=0, column=0)
+
+    entry = tk.Entry(frame)
+    entry.grid(row=0, column=0)
+
+
+def show_base(frame):
+    clicked = StringVar()
+    clicked.set("base")
+
+    drop = OptionMenu(frame, clicked, "Monday", "Tuesday", "Wednesday")
+    drop.grid(row=3, column=1)
+
+    button = tk.Button(frame, text="done", command=lambda: details)
+    button.grid(row=4, column=1)
+
+def show_frame(frame):
+    frame.tkraise()
+
+def create_welcome_screen(screen, donor_screen, soldier_screen):
+    frame = tk.Frame(screen)
+
+    welcome_text = tk.Label(frame, text="Welcome to DonationNation!")
     welcome_text.grid(row=0, column=1)
 
-    choose_text = tk.Label(screen, text="Are you a soldier or a donor?")
+    choose_text = tk.Label(frame, text="Are you a soldier or a donor?")
     choose_text.grid(row=1, column=1)
 
-    soldier_button = tk.Button(screen, text="Soldier", command=clicked_soldier_button)
+    soldier_button = tk.Button(frame, text="Soldier", command=lambda: show_frame(soldier_screen))
     soldier_button.grid(row=3, column=1)
 
-    donor_button = tk.Button(screen, text="Donor", command=clicked_donor_button)
+    donor_button = tk.Button(frame, text="Donor", command=lambda: show_frame(donor_screen))
     donor_button.grid(row=3, column=2)
 
-    screen.mainloop()
+    return frame
 
+def create_donor_screen(screen):
+    frame = tk.Frame(screen)
 
-def show_donor_screen(screen):
-    welcome_text = tk.Label(screen, text="Welcome to DonationNation!")
+    clicked = StringVar()
+    clicked.set("choose day")
+
+    drop = OptionMenu(frame, clicked, "Monday", "Tuesday", "Wednesday")
+    drop.grid(row=0, column=1)
+
+    button = tk.Button(frame, text="done", command= lambda: show_base(frame))
+    button.grid(row=1, column=1)
+
+    return frame
+
+def create_soldier_screen(screen):
+    frame = tk.Frame(screen)
+
+    welcome_text = tk.Label(frame, text="yay")
     welcome_text.grid(row=0, column=1)
 
-def clicked_soldier_button():
-    global donor_screen
-    show_donor_screen(donor_screen)
-
-def clicked_donor_button():
-    #goto next screen
-    pass
+    return frame
 
 def main():
     root = tk.Tk()
-
-    welcome_screen = Frame(root)
-    donor_screen = Frame(root)
-    soldier_screen = Frame(root)
-
-    welcome_screen.grid(row=0, column=0)
-    donor_screen.grid(row=0, column=0)
-    soldier_screen.grid(row=0, column=0)
-
-
     root.geometry("400x400")
     root.title("DonationNation")
 
-    show_welcome_screen(welcome_screen)
+    # Create screens
+    details_screen = create_details_screen()
+    donor_screen = create_donor_screen(root)
+    soldier_screen = create_soldier_screen(root)
+    welcome_screen = create_welcome_screen(root, donor_screen, soldier_screen)
 
+    # Add screens to the main window
+    welcome_screen.grid(row=0, column=0, sticky="nsew")
+    donor_screen.grid(row=0, column=0, sticky="nsew")
+    soldier_screen.grid(row=0, column=0, sticky="nsew")
+
+    # Show welcome screen
+    show_frame(welcome_screen)
+
+    root.mainloop()
 
 main()
