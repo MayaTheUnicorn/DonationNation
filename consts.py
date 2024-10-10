@@ -1,4 +1,5 @@
 BASE_LIST = ["Uvda", "Gidonim", "Hatzor", "Nevatim", "Palmahim"]
+GEAR_LIST = ['Vests', 'Gloves', 'Helmets', 'Goggles', 'Food']
 
 EMAIL_DICT = {
     "Uvda": "Uvda@gmail.com",

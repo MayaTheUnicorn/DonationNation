@@ -3,9 +3,10 @@ import validation
 import openpyxl as op
 
 
-def donation():
+
+def donation(gear):
     wb = op.load_workbook(r'gear_amounts.xlsx')
-    gear = input("what do you want to donate?")
+    # gear = input("what do you want to donate?")
     if gear in consts.MIN_GEAR_DICT:
         bases_lack = []
         for base in consts.BASE_CODES_DICT:
@@ -13,6 +14,7 @@ def donation():
             row_gear = check_row(gear)
             if ws.cell(row=row_gear, column=consts.AMOUNT_COL).value < consts.MIN_GEAR_DICT[gear][base]:
                 bases_lack.append(base)
+        return bases_lack
         print("the red ones are the most urgent")
         for base in bases_lack:
             ws = wb[base]
@@ -28,7 +30,7 @@ def donation():
             gmail = input("what is your email?")
             if validation.checking_mail(gmail):
                 pass# send the donor details
-        return bases_lack
+
 
 def check_row(gear):
     if gear == "Vests":
