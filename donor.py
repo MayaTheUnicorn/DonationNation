@@ -11,13 +11,13 @@ def donation():
         for base in consts.BASE_CODES_DICT:
             ws = wb[base]
             row_gear = check_row(gear)
-            if ws.cell(row=row_gear, column=2).value < consts.MIN_GEAR_DICT[gear][base]:
+            if ws.cell(row=row_gear, column=consts.AMOUNT_COL).value < consts.MIN_GEAR_DICT[gear][base]:
                 bases_lack.append(base)
         print("the red ones are the most urgent")
         for base in bases_lack:
             ws = wb[base]
             row_gear = check_row(gear)
-            if ws.cell(row=row_gear, column=3).value == "Urgent" :
+            if ws.cell(row=row_gear, column=consts.URGENCY_COL).value == "Urgent" :
                 print("red")
             else:
                 print("black")
@@ -28,7 +28,7 @@ def donation():
             gmail = input("what is your email?")
             if validation.checking_mail(gmail):
                 pass# send the donor details
-
+        return bases_lack
 
 def check_row(gear):
     if gear == "Vests":
@@ -43,4 +43,3 @@ def check_row(gear):
         row = consts.FOOD_ROW
     return row
 
-donation()
