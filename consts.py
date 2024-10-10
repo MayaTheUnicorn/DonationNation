@@ -1,3 +1,5 @@
+BASE_LIST = ["Uvda", "Gidonim", "Hatzor", "Nevatim", "Palmahim"]
+
 EMAIL_DICT = {
     "Uvda": "Uvda@gmail.com",
     "Gidonim": "Gidonim@gmail.com",
