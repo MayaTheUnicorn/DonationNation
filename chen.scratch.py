@@ -72,11 +72,13 @@ def create_welcome_screen(screen, donor_screen, soldier_screen):
 
     return frame
 
+
+
 def create_donor_screen(screen, details_screen):
     frame = tk.Frame(screen)
 
     clicked = StringVar()
-    clicked.set("choose day")
+    clicked.set("choose gear to donate")
 
     drop = OptionMenu(frame, clicked, "Monday", "Tuesday", "Wednesday")
     drop.grid(row=0, column=1)
@@ -86,24 +88,50 @@ def create_donor_screen(screen, details_screen):
 
     return frame
 
-def create_soldier_screen(screen):
+def create_soldier_screen(screen, action_soldier_screen):
     frame = tk.Frame(screen)
 
-    welcome_text = tk.Label(frame, text="yay")
-    welcome_text.grid(row=0, column=1)
+    clicked = StringVar()
+    clicked.set("choose base")
+
+    drop = OptionMenu(frame, clicked, "Monday", "Tuesday", "Wednesday")
+    drop.grid(row=0, column=1)
+
+    base_code_text = tk.Label(frame, text="base code:")
+    base_code_text.grid(row=1, column=0)
+
+    email_entry = tk.Entry(frame, width=20, font=('Arial', 10))
+    email_entry.grid(row=1, column=1)
+
+    button = tk.Button(frame, text="Submit", command=lambda: show_frame(action_soldier_screen))
+    button.grid(row=6, column=1)
 
     return frame
 
+def create_action_soldier_screen(screen):
+    frame = tk.Frame(screen)
+
+    clicked = StringVar()
+    clicked.set("choose action")
+
+    drop = OptionMenu(frame, clicked, "Monday", "Tuesday", "Wednesday")
+    drop.grid(row=0, column=1)
+
+    button = tk.Button(frame, text="done", command=lambda: show_base(frame))
+    button.grid(row=1, column=1)
+
+    return frame
 def main():
     root = tk.Tk()
     root.geometry("400x400")
     root.title("DonationNation")
 
     # Create screens
+    action_soldier_screen = create_action_soldier_screen(root)
     thank_you_screen = create_thank_you_screen(root)
     details_screen = create_details_screen(root, thank_you_screen)
     donor_screen = create_donor_screen(root, details_screen)
-    soldier_screen = create_soldier_screen(root)
+    soldier_screen = create_soldier_screen(root, action_soldier_screen)
     welcome_screen = create_welcome_screen(root, donor_screen, soldier_screen)
 
     # Add screens to the main window
@@ -112,6 +140,7 @@ def main():
     soldier_screen.grid(row=0, column=0, sticky="nsew")
     details_screen.grid(row=0, column=0, sticky="nsew")
     thank_you_screen.grid(row=0, column=0, sticky="nsew")
+    action_soldier_screen.grid(row=0, column=0, sticky="nsew")
 
     # Show welcome screen
     show_frame(welcome_screen)
