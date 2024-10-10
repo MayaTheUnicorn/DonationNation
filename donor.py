@@ -28,7 +28,7 @@ def donation():
             gmail = input("what is your email?")
             if validation.checking_mail(gmail):
                 pass# send the donor details
-
+        return bases_lack
 
 def check_row(gear):
     if gear == "Vests":
