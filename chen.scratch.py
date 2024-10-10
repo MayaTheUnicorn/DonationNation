@@ -68,10 +68,10 @@ def main():
     root.title("DonationNation")
 
     # Create screens
-    details_screen = create_details_screen()
+    details_screen = create_details_screen(root)
     donor_screen = create_donor_screen(root)
     soldier_screen = create_soldier_screen(root)
-    welcome_screen = create_welcome_screen(root, donor_screen, soldier_screen)
+    welcome_screen = create_welcome_screen(root, donor_screen, soldier_screen, d)
 
     # Add screens to the main window
     welcome_screen.grid(row=0, column=0, sticky="nsew")
